@@ -12,6 +12,88 @@
 
 <body>
 
+    <h1>Bio Form</h1>
+
+    <p>Fill in your details below to create a short paragraph about yourself!</p>
+
+    <form>
+
+        <div>
+
+            <label>First Name: </label>
+            <input type="text" id="FName"/>
+
+        </div>
+
+        <div>
+
+            <label>Last Name: </label>
+            <input type="text" id="LName"/>
+
+        </div>
+
+        <div>
+
+            <label>Male: </label>
+            <input type="radio" name="gender" id="male" />
+
+            <label>Female: </label>
+            <input type="radio" name="gender" id="female" />
+
+            <label>Other: </label>
+            <input type="radio" name="gender" id="other" />
+
+        </div>
+
+        <div>
+            
+            <label>Age: </label>
+            <input type="text" id="age" />
+
+        </div>
+
+        <div>
+            
+            <label>Favourite Colour: </label>
+            <select>
+                <option value="" selected disabled></option>
+                <option value="Red">Red</option>
+                <option value="Orange">Orange</option>
+                <option value="Yellow">Yello</option>
+                <option value="Red">Red</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="White">White</option>
+                <option value="Black">Black</option>                
+            </select>
+
+        </div>
+
+        <div>
+
+            <fieldset>
+
+                <legend>Interest: </legend>
+
+                    <label>Sport: </label><input type="checkbox" id="Sport" name="interests" value="Sport" />
+                    <label>Music: </label><input type="checkbox" id="Music" name="interests" value="Music" />
+                    <label>Reading: </label><input type="checkbox" id="Reading" name="interests" value="Reading" />
+                    <label>Gardening: </label><input type="checkbox" id="Gardening" name="interests" value="Gardening" />
+                    <label>Cookery: </label><input type="checkbox" id="Cookery" name="interests" value="Cookery" />
+                    <label>D.I.Y: </label><input type="checkbox" id="D.I.Y" name="interests" value="D.I.Y" />
+
+            </fieldset>
+
+        </div>
+
+        <div>
+
+            <p id="bio_paragraph"></p>
+
+        </div>
+
+
+    </form>
   
 
 </body>

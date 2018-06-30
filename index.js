@@ -5,30 +5,69 @@ var person = {
     gender_prefix: "",
     age: "",
     fav_col: "",
-    interests: ""
+    interests: "",
+    bio: "My name is " + this.gender_prefix + " " + this.first_name + " " + this.last_name + ", and I am " + this.age + 
+    " years old. My favourite colour is " + this.fav_col + " and I'm interested in " + this.interests + "."
 }
 
 function process_data() {
 
-    fullName();
+    get_full_name();
     genderPrefix();
     get_age();
     get_fav_col();
     get_interests();
 
-    p.innerHTML = "My name is " + person.gender_prefix + " " + person.first_name + " " + person.last_name + ", and I am " + person.age + 
-                  " years old. My favourite colour is " + person.fav_col + " and I'm interested in " + person.interests + ".";
+    document.getElementById("bio_paragraph").innerHTML = person.bio;
 
 }
 
-//code for capturing user-entered name data
+// code for capturing user-entered name data
 
-function fullName() {
-    
-    person.first_name = document.getElementById("FName").value;
-    person.last_name = document.getElementById("LName").value;
+function get_full_name() {
+
+    get_first_name();
+    get_last_name();
 
 }
+
+function get_first_name() {
+
+    var first_name = "";    
+    var user_input_first_name = document.getElementById("FName").value;
+    if(user_input_first_name === ""){
+        first_name_warning();
+        person.bio = "Please correct errors.";
+    }
+
+    user_input_first_name = user_input_first_name.trim();
+    var caps_first_letter = user_input_first_name.substring(0,1).toUpperCase();
+    var rest_of_name = user_input_first_name.substring(1).toLowerCase();
+    first_name = caps_first_letter + rest_of_name;
+
+    person.first_name = first_name;
+
+}
+
+function get_last_name() {
+
+    var last_name = "";    
+    var user_input_last_name = document.getElementById("LName").value;
+    if(user_input_last_name === ""){
+        last_name_warning();
+        person.bio = "Please correct errors.";
+    }
+
+    user_input_last_name = user_input_last_name.trim();
+    var caps_first_letter = user_input_last_name.substring(0,1).toUpperCase();
+    var rest_of_name = user_input_last_name.substring(1).toLowerCase();
+    last_name = caps_first_letter + rest_of_name;
+
+    person.last_name = last_name;
+
+}
+
+// code for capturing user-entered gender data
 
 function genderPrefix() {
 
@@ -41,6 +80,9 @@ function genderPrefix() {
     }
 
 }
+
+
+// code for capturing user-entered age data
 
 function get_age() {
 
@@ -85,4 +127,18 @@ function get_interests() {
     
     person.interests = interests_str;
     
+}
+
+// code to show data input warnings
+
+function first_name_warning() {
+
+    document.getElementById("FName_warn").style.visibility = "visible";
+
+}
+
+function last_name_warning() {
+
+    document.getElementById("LName_warn").style.visibility = "visible";
+
 }

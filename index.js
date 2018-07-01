@@ -6,7 +6,9 @@ var bio_form = {
     last_name: "",
     last_name_valid: false,
     gender_prefix: "",
-    gender_prefix_valid: false
+    gender_prefix_valid: false,
+    age: "",
+    age_valid: false
 };
 
 function process_data() {
@@ -14,10 +16,13 @@ function process_data() {
     get_first_name();
     get_last_name();
     get_gender_prefix();
+    get_age();
 
-    p.innerHTML = "My name is " + bio_form.gender_prefix + " " + bio_form.first_name + " " + bio_form.last_name + ".";
+    p.innerHTML = "My name is " + bio_form.gender_prefix + " " + bio_form.first_name + " " + bio_form.last_name + ", " +
+                  "and I am " + bio_form.age + " years old.";
 
-    if((bio_form.first_name_valid === false) || (bio_form.last_name_valid === false) || (bio_form.gender_prefix_valid === false)) {
+    if((bio_form.first_name_valid === false) || (bio_form.last_name_valid === false) || (bio_form.gender_prefix_valid === false)
+        || (bio_form.age_valid === false)) {
 
         p.style.visibility = "hidden";
 
@@ -91,6 +96,25 @@ function get_gender_prefix() {
             bio_form.gender_prefix = "";
             document.getElementById("gender_warn").style.visibility = "hidden";
             bio_form.gender_prefix_valid = true;
+
+    }
+
+}
+
+function get_age() {
+
+    var age = document.getElementById("age").value;
+
+    if((age === "") || (age <= 0) || (age >= 120)) {
+
+        document.getElementById("age_warn").style.visibility = "visible";
+        bio_form.age_valid = false;
+    
+    } else {
+
+        document.getElementById("age_warn").style.visibility = "hidden";
+        bio_form.age_valid = true;
+        bio_form.age = age;
 
     }
 

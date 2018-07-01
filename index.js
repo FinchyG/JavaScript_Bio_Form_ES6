@@ -1,144 +1,97 @@
 var p = document.getElementById("bio_paragraph");
-var person = {
+
+var bio_form = {
     first_name: "",
+    first_name_valid: false,
     last_name: "",
+    last_name_valid: false,
     gender_prefix: "",
-    age: "",
-    fav_col: "",
-    interests: "",
-    bio: "My name is " + this.gender_prefix + " " + this.first_name + " " + this.last_name + ", and I am " + this.age + 
-    " years old. My favourite colour is " + this.fav_col + " and I'm interested in " + this.interests + "."
-}
+    gender_prefix_valid: false
+};
 
 function process_data() {
 
-    get_full_name();
-    genderPrefix();
-    get_age();
-    get_fav_col();
-    get_interests();
-
-    document.getElementById("bio_paragraph").innerHTML = person.bio;
-
-}
-
-// code for capturing user-entered name data
-
-function get_full_name() {
-
     get_first_name();
     get_last_name();
+    get_gender_prefix();
 
+    p.innerHTML = "My name is " + bio_form.gender_prefix + " " + bio_form.first_name + " " + bio_form.last_name + ".";
+
+    if((bio_form.first_name_valid === false) || (bio_form.last_name_valid === false) || (bio_form.gender_prefix_valid === false)) {
+
+        p.style.visibility = "hidden";
+
+    } else {
+
+        p.style.visibility = "visible";
+
+    }
+    
 }
 
 function get_first_name() {
 
-    var first_name = "";    
-    var user_input_first_name = document.getElementById("FName").value;
+    var user_input_first_name = document.getElementById("FName").value.trim();
+    
     if(user_input_first_name === ""){
-        first_name_warning();
-        person.bio = "Please correct errors.";
+        document.getElementById("FName_warn").style.visibility = "visible";
+        bio_form.first_name_valid = false;
+    } else {
+        document.getElementById("FName_warn").style.visibility = "hidden";
+        bio_form.first_name_valid = true;
+        var caps_first_letter = user_input_first_name.substring(0,1).toUpperCase();
+        var rest_of_name = user_input_first_name.substring(1).toLowerCase();
+        
+        bio_form.first_name = caps_first_letter + rest_of_name;
     }
-
-    user_input_first_name = user_input_first_name.trim();
-    var caps_first_letter = user_input_first_name.substring(0,1).toUpperCase();
-    var rest_of_name = user_input_first_name.substring(1).toLowerCase();
-    first_name = caps_first_letter + rest_of_name;
-
-    person.first_name = first_name;
 
 }
 
 function get_last_name() {
 
-    var last_name = "";    
-    var user_input_last_name = document.getElementById("LName").value;
+    var user_input_last_name = document.getElementById("LName").value.trim();
+    
     if(user_input_last_name === ""){
-        last_name_warning();
-        person.bio = "Please correct errors.";
-    }
-
-    user_input_last_name = user_input_last_name.trim();
-    var caps_first_letter = user_input_last_name.substring(0,1).toUpperCase();
-    var rest_of_name = user_input_last_name.substring(1).toLowerCase();
-    last_name = caps_first_letter + rest_of_name;
-
-    person.last_name = last_name;
-
-}
-
-// code for capturing user-entered gender data
-
-function genderPrefix() {
-
-    if(document.getElementById("male").checked) {
-        person.gender_prefix = "Mr";
-    } else if(document.getElementById("female").checked){
-        person.gender_prefix = "Mrs";
+        document.getElementById("LName_warn").style.visibility = "visible";
+        bio_form.last_name_valid = false;
     } else {
-        person.gender_prefix = "";
+        document.getElementById("LName_warn").style.visibility = "hidden";
+        bio_form.last_name_valid = true;
+        var caps_first_letter = user_input_last_name.substring(0,1).toUpperCase();
+        var rest_of_name = user_input_last_name.substring(1).toLowerCase();
+        
+        bio_form.last_name = caps_first_letter + rest_of_name;;
     }
 
 }
 
+function get_gender_prefix() {
 
-// code for capturing user-entered age data
+    if(!(document.getElementById("male").checked) && 
+        !(document.getElementById("female").checked) && 
+        !(document.getElementById("other").checked)) {
 
-function get_age() {
+            document.getElementById("gender_warn").style.visibility = "visible";
+            bio_form.gender_prefix_valid = false;
+        
+        } else if(document.getElementById("male").checked) {
+            
+            bio_form.gender_prefix = "Mr";
+            document.getElementById("gender_warn").style.visibility = "hidden";
+            bio_form.gender_prefix_valid = true;
 
-    person.age = document.getElementById("age").value;
+        } else if(document.getElementById("female").checked){
+        
+            bio_form.gender_prefix = "Mrs";
+            document.getElementById("gender_warn").style.visibility = "hidden";
+            bio_form.gender_prefix_valid = true;
 
-}
+        } else if(document.getElementById("other").checked){
 
-function get_fav_col() {
+            bio_form.gender_prefix = "";
+            document.getElementById("gender_warn").style.visibility = "hidden";
+            bio_form.gender_prefix_valid = true;
 
-    person.fav_col = document.getElementById("fav_col").value;
-
-}
-
-function get_interests() {
-
-    interests_arr = [
-        document.getElementById("sports"),
-        document.getElementById("music"),
-        document.getElementById("reading"),
-        document.getElementById("gardening"),
-        document.getElementById("cookery"),
-        document.getElementById("D.I.Y")        
-    ];
-
-    var sel_interests_arr = [];
-
-    for(i=0; i < interests_arr.length; i++) {
-        if(interests_arr[i].checked) {
-            sel_interests_arr.push(interests_arr[i].value);
-        }
     }
-
-    var interests_str = "";
-
-    for(i=0; i < sel_interests_arr.length - 1; i++) {
-        interests_str += sel_interests_arr[i] + ", ";
-    }
-
-    interests_str += "and " + sel_interests_arr[sel_interests_arr.length - 1];
-
-    
-    
-    person.interests = interests_str;
-    
-}
-
-// code to show data input warnings
-
-function first_name_warning() {
-
-    document.getElementById("FName_warn").style.visibility = "visible";
-
-}
-
-function last_name_warning() {
-
-    document.getElementById("LName_warn").style.visibility = "visible";
 
 }

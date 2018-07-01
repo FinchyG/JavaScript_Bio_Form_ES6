@@ -8,7 +8,11 @@ var bio_form = {
     gender_prefix: "",
     gender_prefix_valid: false,
     age: "",
-    age_valid: false
+    age_valid: false,
+    fav_color: "",
+    fav_color_valid: false,
+    interests: "",
+    interests_valid: false
 };
 
 function process_data() {
@@ -17,12 +21,15 @@ function process_data() {
     get_last_name();
     get_gender_prefix();
     get_age();
+    get_fav_color();
+    get_interests();
 
     p.innerHTML = "My name is " + bio_form.gender_prefix + " " + bio_form.first_name + " " + bio_form.last_name + ", " +
-                  "and I am " + bio_form.age + " years old.";
+                  "and I am " + bio_form.age + " years old. My favourite color is " + bio_form.fav_color + " and I am interested in "
+                  + bio_form.interests + ".";
 
     if((bio_form.first_name_valid === false) || (bio_form.last_name_valid === false) || (bio_form.gender_prefix_valid === false)
-        || (bio_form.age_valid === false)) {
+        || (bio_form.age_valid === false) || (bio_form.fav_color_valid === false) || (bio_form.interests_valid === false)) {
 
         p.style.visibility = "hidden";
 
@@ -118,4 +125,92 @@ function get_age() {
 
     }
 
+}
+
+function get_fav_color() {
+
+    var fav_color = document.getElementById("fav_col").value;
+
+    if(fav_color === "") {
+
+        document.getElementById("fav_color_warn").style.visibility = "visible";
+        bio_form.fav_color_valid = false;
+
+    } else {
+
+        document.getElementById("fav_color_warn").style.visibility = "hidden";
+        bio_form.fav_color_valid = true;
+        bio_form.fav_color = fav_color;
+
+    }
+
+}
+
+function get_interests() {
+
+    interests_arr = [
+        document.getElementById("sports"),
+        document.getElementById("music"),
+        document.getElementById("reading"),
+        document.getElementById("gardening"),
+        document.getElementById("cookery"),
+        document.getElementById("D.I.Y")        
+    ];
+
+    var sel_interests_arr = [];
+
+    for(i=0; i < interests_arr.length; i++) {
+
+        if(interests_arr[i].checked) {
+            sel_interests_arr.push(interests_arr[i].value);
+        }
+
+    }
+
+
+
+    if(sel_interests_arr.length === 0) {
+
+        document.getElementById("interests_warn").style.visibility = "visible";
+        bio_form.interests_valid = false;
+
+    }
+
+    var loop_interests_str = "";
+    var interests_str = "";
+
+    if(sel_interests_arr.length >= 3) {
+
+        for(i=0; i < sel_interests_arr.length - 2; i++) {
+
+            loop_interests_str += sel_interests_arr[i] + ", ";
+        
+        }
+
+        interests_str += loop_interests_str + sel_interests_arr[sel_interests_arr.length -2] + " and " + 
+                         sel_interests_arr[sel_interests_arr.length -1];
+        
+        bio_form.interests_valid = true;
+    
+    }
+
+    if(sel_interests_arr.length === 2) {
+
+        interests_str += sel_interests_arr[sel_interests_arr.length -2] + " and " + 
+                         sel_interests_arr[sel_interests_arr.length -1];
+
+        bio_form.interests_valid = true;
+
+    }
+
+    if(sel_interests_arr.length === 1) {
+
+        interests_str += sel_interests_arr;
+
+        bio_form.interests_valid = true;
+
+    }
+
+    bio_form.interests = interests_str;
+    
 }

@@ -15,7 +15,7 @@ var bio_form = {
     interests_valid: false
 };
 
-function process_data() {
+const process_data = () => {
 
     get_first_name();
     get_last_name();
@@ -41,9 +41,9 @@ function process_data() {
     
 }
 
-function get_first_name() {
+const get_first_name = () => {
 
-    var user_input_first_name = document.getElementById("FName").value.trim();
+    const user_input_first_name = document.getElementById("FName").value.trim();
     
     if(user_input_first_name === ""){
         document.getElementById("FName_warn").style.visibility = "visible";
@@ -51,17 +51,17 @@ function get_first_name() {
     } else {
         document.getElementById("FName_warn").style.visibility = "hidden";
         bio_form.first_name_valid = true;
-        var caps_first_letter = user_input_first_name.substring(0,1).toUpperCase();
-        var rest_of_name = user_input_first_name.substring(1).toLowerCase();
+        const caps_first_letter = user_input_first_name.substring(0,1).toUpperCase();
+        const rest_of_name = user_input_first_name.substring(1).toLowerCase();
         
         bio_form.first_name = caps_first_letter + rest_of_name;
     }
 
 }
 
-function get_last_name() {
+const get_last_name = () => {
 
-    var user_input_last_name = document.getElementById("LName").value.trim();
+    const user_input_last_name = document.getElementById("LName").value.trim();
     
     if(user_input_last_name === ""){
         document.getElementById("LName_warn").style.visibility = "visible";
@@ -69,15 +69,15 @@ function get_last_name() {
     } else {
         document.getElementById("LName_warn").style.visibility = "hidden";
         bio_form.last_name_valid = true;
-        var caps_first_letter = user_input_last_name.substring(0,1).toUpperCase();
-        var rest_of_name = user_input_last_name.substring(1).toLowerCase();
+        const caps_first_letter = user_input_last_name.substring(0,1).toUpperCase();
+        const rest_of_name = user_input_last_name.substring(1).toLowerCase();
         
         bio_form.last_name = caps_first_letter + rest_of_name;;
     }
 
 }
 
-function get_gender_prefix() {
+const get_gender_prefix = () => {
 
     if(!(document.getElementById("male").checked) && 
         !(document.getElementById("female").checked) && 
@@ -108,9 +108,9 @@ function get_gender_prefix() {
 
 }
 
-function get_age() {
+const get_age = () => {
 
-    var age = document.getElementById("age").value;
+    const age = document.getElementById("age").value;
 
     if((age === "") || (age <= 0) || (age >= 120)) {
 
@@ -127,9 +127,9 @@ function get_age() {
 
 }
 
-function get_fav_color() {
+const get_fav_color = () => {
 
-    var fav_color = document.getElementById("fav_col").value;
+    const fav_color = document.getElementById("fav_col").value;
 
     if(fav_color === "") {
 
@@ -146,9 +146,9 @@ function get_fav_color() {
 
 }
 
-function get_interests() {
+const get_interests = () => {
 
-    interests_arr = [
+    const interests_arr = [
         document.getElementById("sports"),
         document.getElementById("music"),
         document.getElementById("reading"),
@@ -157,9 +157,9 @@ function get_interests() {
         document.getElementById("D.I.Y")        
     ];
 
-    var sel_interests_arr = [];
+    let sel_interests_arr = [];
 
-    for(i=0; i < interests_arr.length; i++) {
+    for(let i=0; i < interests_arr.length; i++) {
 
         if(interests_arr[i].checked) {
             sel_interests_arr.push(interests_arr[i].value);
@@ -176,12 +176,12 @@ function get_interests() {
 
     }
 
-    var loop_interests_str = "";
-    var interests_str = "";
+    let loop_interests_str = "";
+    let interests_str = "";
 
     if(sel_interests_arr.length >= 3) {
 
-        for(i=0; i < sel_interests_arr.length - 2; i++) {
+        for(let i=0; i < sel_interests_arr.length - 2; i++) {
 
             loop_interests_str += sel_interests_arr[i] + ", ";
         

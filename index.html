@@ -12,9 +12,15 @@
 
 <body>
 
+<section id="form">
+
     <h1>Bio Form</h1>
 
-    <p>Fill in your details below to create a short paragraph about yourself!</p>
+    <div>
+
+        <p>Fill in your details below to create a short paragraph about yourself!</p>
+
+    </div>
 
     <div>
 
@@ -50,7 +56,7 @@
     <div>
         
         <label>Age: </label>
-        <input type="text" id="age" />
+        <input type="text" id="age" size="5"/>
         <span class="warning" id="age_warn">*Enter your age in years*</span>
 
     </div>
@@ -88,17 +94,15 @@
 
     </div>
 
-    <div>
-
-        <button onclick="process_data()">Submit</button>
-
-    </div>
-
+    <button onclick="process_data()">Submit</button>
+        
     <div>
 
         <p id="bio_paragraph"></p>
 
     </div>
+
+</section>
 
 </body>
 

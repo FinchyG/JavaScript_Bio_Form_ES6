@@ -47,6 +47,10 @@ button {
     color: rgb(229, 29, 29);
 }
 
+#para_div {
+    height: 5em;
+}
+
 @font-face {
     font-family: 'wind_sans_serifregular';
     src: url('fonts/wind-webfont.woff2') format('woff2'),

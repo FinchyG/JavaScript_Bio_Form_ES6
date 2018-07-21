@@ -1,0 +1,23 @@
+{
+  "name": "javascript_bio_form_es6",
+  "version": "1.0.0",
+  "description": "\"javascript bio form coded in es6\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FinchyG/JavaScript_Bio_Form_ES6.git"
+  },
+  "author": "FinchyG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FinchyG/JavaScript_Bio_Form_ES6/issues"
+  },
+  "homepage": "https://github.com/FinchyG/JavaScript_Bio_Form_ES6#readme",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-cssmin": "^2.2.1"
+  }
+}
